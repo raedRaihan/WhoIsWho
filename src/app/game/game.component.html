@@ -1,4 +1,6 @@
+<app-test-comp (messageEvent)="receiveMessage($event)"></app-test-comp>
 <h1>Lets Play</h1>
+<p>message: {{message}}</p>
 
 <div class="ReadyToPlay" *ngIf="readyToPlay"> 
     <div class="OutsideFrame">

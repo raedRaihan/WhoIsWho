@@ -3,12 +3,13 @@ import axios from 'axios';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-game',
-  templateUrl: './game.component.html',
-  styleUrls: ['./game.component.css']
+  selector: 'app-game-session',
+  templateUrl: './game-session.component.html',
+  styleUrls: ['./game-session.component.css']
 })
-export class GameComponent implements OnInit {
+export class GameSessionComponent /* implements OnInit */ {
 
+  /*
   pickedSong: SafeResourceUrl  = '';
   pickedSongObj: any=null;
   token: string = 'BQCAGQ5FDplJ-8h7Qnm7A_PAWDpNcf2OKvTlrbbJN32xQ2N0pbyw7MWEl_qbmTcvOTLZRJm7AOeQETtwr6uPZLWvKfHcnq9RAkY_MbVxNKFrgXr8wRQ';
@@ -16,7 +17,6 @@ export class GameComponent implements OnInit {
   readyToPlay: boolean=false;
   seconds: number  = 0;
   timeLimit: number=31;
-  
 
   button1Text: string="Option Sigma";
   buttons = ["choice 1","choice 2","choice 3","choice 4"];
@@ -75,7 +75,6 @@ export class GameComponent implements OnInit {
   async getRandomSongFromArtist(): Promise<void> 
   {
     const selectedAristId = this.popIds[Math.floor(Math.random() * this.popIds.length)];
-    console.log("Selected id was "+selectedAristId);
     const apiUrl = `https://api.spotify.com/v1/artists/${selectedAristId}/top-tracks`;
     const headers = 
     {
@@ -123,7 +122,5 @@ export class GameComponent implements OnInit {
       }
     }
   }
-
-  
-
+*/
 }
