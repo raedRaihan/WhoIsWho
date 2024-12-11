@@ -1,0 +1,54 @@
+.scoreboard {
+  text-align: center;
+}
+.scoreboard-container {
+  background-color: #f9f6ee;
+}
+
+.scoreboard form {
+  margin-bottom: 20px;
+}
+
+.scoreboard form label {
+  margin-right: 10px;
+}
+
+.scoreboard ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.scoreboard li {
+  padding: 8px;
+  text-align: left;
+  color: black;
+}
+
+.scoreboard li:nth-child(even) {
+  background-color: gray;
+}
+
+.scoreboard li:nth-child(odd) {
+  background-color: transparent;
+}
+
+.scoreboard h2,
+.scoreboard h3 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: block;
+  margin: auto;
+}
+
+button:hover {
+  background-color: #0056b3;
+}

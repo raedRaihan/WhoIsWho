@@ -26,25 +26,40 @@ export class SettingsService {
   updateSettings(updatedSettings: any): void {
     const settings = { ...this.defaultSettings, ...updatedSettings };
     this.saveSettingsToLocalStorage(settings);
-    console.log('Settings updated:', settings);
+    this.applyTheme(settings.isInverted); 
+    console.log('settings updated:', settings);
   }
 
   resetSettings(): void {
     this.saveSettingsToLocalStorage(this.defaultSettings);
-    console.log('Settings reset to defaults');
+    this.applyTheme(this.defaultSettings.isInverted); 
+    console.log('settings reset to defaults');
   }
 
   private loadSettingsFromLocalStorage(): any {
     const settings = localStorage.getItem(this.localStorageKey);
     if (settings) {
-      return JSON.parse(settings);
+      const parsedSettings = JSON.parse(settings);
+      this.applyTheme(parsedSettings.isInverted); // Apply theme when settings are loaded
+      return parsedSettings;
     } else {
       this.saveSettingsToLocalStorage(this.defaultSettings);
+      this.applyTheme(this.defaultSettings.isInverted);
       return this.defaultSettings;
     }
   }
 
   private saveSettingsToLocalStorage(settings: any): void {
     localStorage.setItem(this.localStorageKey, JSON.stringify(settings));
+  }
+
+  private applyTheme(isInverted: boolean): void {
+    const body = document.body;
+
+    if (isInverted) {
+      body.classList.add('inverted-theme');
+    } else {
+      body.classList.remove('inverted-theme');
+    }
   }
 }
