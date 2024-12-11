@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  background-color: #1db954;
+}
+
+body {
+  font-family: "Sofia Sans", sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "JetBrains Mono", monospace;
+}
+
+p {
+  font-family: "Song Myung", serif;
+}

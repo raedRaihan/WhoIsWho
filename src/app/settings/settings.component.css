@@ -1,0 +1,69 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+h1,
+h2 {
+  color: white;
+}
+h2 {
+  margin-bottom: 50px;
+  justify-content: center;
+  display: flex;
+}
+.back-button {
+  position: relative;
+  right: 5px;
+  height: 50px;
+  width: 100px;
+  /* width: 500px; */
+  /* height: 500px;
+  background-image: url("/src/assets/images/backArrow.png");
+  background-color: transparent;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; */
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+label {
+  display: flex;
+  color: white;
+  justify-content: flex-end;
+  margin-right: 10px;
+  font-weight: bold;
+  width: 60%;
+}
+
+input,
+select {
+  margin-left: 10px;
+  padding: 5px;
+  width: 200px;
+}
+
+.save-buttons {
+  margin: auto;
+  margin-top: 50px;
+}
+
+.save-buttons button {
+  padding: 10px;
+  margin-top: 10px;
+  margin-left: 20px;
+  width: 150px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+button[type="button"] {
+  background-color: #6c757d;
+}
