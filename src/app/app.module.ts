@@ -8,17 +8,20 @@ import { HomeComponent } from "./home/home.component";
 import { SettingsComponent } from './settings/settings.component';
 import { GameComponent } from './game/game.component';
 import { ScoreboardComponent } from './scoreboard/scoreboard.component';
+import { TestCompComponent } from './game/test-comp/test-comp.component';
 
 const routes: Routes = [{ path: "", component: HomeComponent },
   {path: "settings", component:SettingsComponent},
   {path: "game", component:GameComponent},
-  {path: "scoreboard", component:ScoreboardComponent}
+  {path: "scoreboard", component:ScoreboardComponent},
+  {path: "test", component:TestCompComponent}
 ];
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, SettingsComponent, GameComponent, ScoreboardComponent],
+  declarations: [AppComponent, HomeComponent, SettingsComponent, GameComponent, ScoreboardComponent, TestCompComponent],
   imports: [BrowserModule, FormsModule, RouterModule.forRoot(routes)],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule 
+{}
