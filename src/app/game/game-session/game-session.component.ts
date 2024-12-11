@@ -1,30 +1,64 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import axios from 'axios';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-game-session',
   templateUrl: './game-session.component.html',
   styleUrls: ['./game-session.component.css']
 })
-export class GameSessionComponent /* implements OnInit */ {
+export class GameSessionComponent implements OnInit  {
 
-  /*
+  token: string = 'BQBSLyRbB3h3hQ4saA38KYeGobEWPvotnjQn5UTanC_EC4ihm1IM0nc2Wuz8wgbJqNhkPXDMQGx5YEMH_NWAehEBZfBADXmhFhd-Wqr1edYiI70JS4w';
+
   pickedSong: SafeResourceUrl  = '';
   pickedSongObj: any=null;
-  token: string = 'BQCAGQ5FDplJ-8h7Qnm7A_PAWDpNcf2OKvTlrbbJN32xQ2N0pbyw7MWEl_qbmTcvOTLZRJm7AOeQETtwr6uPZLWvKfHcnq9RAkY_MbVxNKFrgXr8wRQ';
   popIds: string[]=["7Fo8TAyGJr4VmhE68QamMf","4lxfqrEsLX6N1N4OCSkILp","77tT1kLj6mCWtFNqiOmP9H","0PFtn5NtBbbUNbU9EAmIWF","3fMbdgg4jU18AjLCKBhRSm"]
   readyToPlay: boolean=false;
   seconds: number  = 0;
   timeLimit: number=31;
 
-  button1Text: string="Option Sigma";
   buttons = ["choice 1","choice 2","choice 3","choice 4"];
   alreadySelectedAnswer: boolean=false;
+  correctButtonNumber:number = -1;
+  choiceMade: boolean=false;
 
+  /* Points variables*/
+  @Input() points: number=0;
+  @Output() pointEvent= new EventEmitter<number>();
+  sendPoints()
+  {
+    this.pointEvent.emit(this.points);
+  }
 
-  message = "hello world";
+  /* QuestionNumber variables*/
+  @Input() questionState: number =1;
+  @Output() levelNumEvent= new EventEmitter<number>();
+  sendLevelNumber()
+  {
+    this.levelNumEvent.emit(this.questionState);
+  }
+
   constructor(private sanitizer: DomSanitizer) { }
+
+  transitionToNextLevel()
+  {
+    this.questionState += 1;
+    this.sendLevelNumber();
+  }
+
+  checkAnswer(buttonNumber:number)
+  {
+    if(this.choiceMade==false && buttonNumber== this.correctButtonNumber)
+    {
+      this.points += 31 - this.seconds;
+      this.questionState += 1;
+      this.sendPoints();
+      this.choiceMade=true;
+      setInterval(this.transitionToNextLevel.bind(this), 2000);
+    }
+  }
 
   
   ngOnInit(): void
@@ -57,6 +91,7 @@ export class GameSessionComponent /* implements OnInit */ {
       {
         this.buttons[i]=this.pickedSongObj.artists[0].name ;
         this.alreadySelectedAnswer=true;
+        this.correctButtonNumber=i;
       }
     }
 
@@ -64,10 +99,6 @@ export class GameSessionComponent /* implements OnInit */ {
     
   }
 
-  receiveMessage($event: string)
-  {
-    this.message=$event;
-  }
   
 
   
@@ -122,5 +153,5 @@ export class GameSessionComponent /* implements OnInit */ {
       }
     }
   }
-*/
+
 }

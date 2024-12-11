@@ -1,0 +1,41 @@
+.blur-overlay
+{
+    position: absolute;
+    background: rgba(255, 255, 255, 0.4); /* makes overlay transparent */
+    backdrop-filter: blur(8px); 
+}
+.OutsideFrame
+{
+    display:flex;
+    justify-content: center;
+    
+}
+.InsideFrame
+{
+    position: relative;
+    width: 300px;
+    height: 380px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.top-cover
+{
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 65%;
+}
+
+.bottom-cover
+{
+    bottom: 0;
+    left: 0;
+    width: 75%;
+    height: 35%;
+}
+
+.ReadyToPlay
+{
+    height: 35%;
+}
