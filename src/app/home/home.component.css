@@ -1,0 +1,51 @@
+body {
+  margin: 0;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  background-color: #f0f0f0;
+}
+.container {
+  margin-top: 10%;
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+}
+
+button {
+  border: none;
+  background: none;
+  padding: 10px 20px;
+  background-color: transparent;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #2b72be;
+}
+
+img {
+  max-width: 200px;
+  height: auto;
+}
+.stacked-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+.stacked-button span {
+  font-size: 16px;
+  margin-top: 10px;
+}
