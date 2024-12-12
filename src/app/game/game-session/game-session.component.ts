@@ -43,6 +43,7 @@ export class GameSessionComponent implements OnInit  {
   @Input() genre: string = "pop";
   @Input() gameMode: string = "NTA"; // either NTA or NTS
   @Input() isInverted: boolean=true;
+  @Input() rounds: number = 3;
 
   
 
@@ -147,7 +148,7 @@ export class GameSessionComponent implements OnInit  {
       this.questionState += 1;
       console.log("now changed value of qs "+this.questionState);
       this.sendLevelNumber();
-      if(this.questionState > 3)
+      if(this.questionState > this.rounds)
       {
         this.router.navigate(['/scoreboard'], { queryParams: { points: this.points}}); 
       }
@@ -162,6 +163,10 @@ export class GameSessionComponent implements OnInit  {
     if(this.choiceMade==false && buttonNumber== this.correctButtonNumber)
     {
       this.points += 31 - this.seconds;
+      if (this.genre == "all")
+      {
+        this.points += 5; 
+      }
       this.sendPoints();
       this.choiceMade=true;
       setInterval(this.transitionToNextLevel.bind(this), 2000);

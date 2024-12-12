@@ -10,15 +10,50 @@
     <h1 style="margin-left: 25px;">Question {{questionState}}</h1>
     
     <div *ngIf="questionState==1">
-        <app-game-session [points]="points" (pointEvent)="receivePoints($event)" [questionState]="questionState" (levelNumEvent)="recLevelNumber($event)" [gameMode]="gameMode" [genre]="genre" [isInverted]="isInverted"></app-game-session>
+        <app-game-session [points]="points" (pointEvent)="receivePoints($event)" [questionState]="questionState" (levelNumEvent)="recLevelNumber($event)" [gameMode]="gameMode" [genre]="genre" [isInverted]="isInverted" [rounds]="rounds"></app-game-session>
     </div>
     
     <div *ngIf="questionState==2">
-        <app-game-session [points]="points" (pointEvent)="receivePoints($event)" [questionState]="questionState" (levelNumEvent)="recLevelNumber($event)" [gameMode]="gameMode" [genre]="genre" [isInverted]="isInverted"></app-game-session>
+        <app-game-session [points]="points" (pointEvent)="receivePoints($event)" [questionState]="questionState" (levelNumEvent)="recLevelNumber($event)" [gameMode]="gameMode" [genre]="genre" [isInverted]="isInverted" [rounds]="rounds"></app-game-session>
     </div>
     
     <div *ngIf="questionState==3">
-        <app-game-session [points]="points" (pointEvent)="receivePoints($event)" [questionState]="questionState" (levelNumEvent)="recLevelNumber($event)" [gameMode]="gameMode" [genre]="genre" [isInverted]="isInverted"></app-game-session>
+        <app-game-session [points]="points" (pointEvent)="receivePoints($event)" [questionState]="questionState" (levelNumEvent)="recLevelNumber($event)" [gameMode]="gameMode" [genre]="genre" [isInverted]="isInverted" [rounds]="rounds"></app-game-session>
+    </div>
+
+    <div *ngIf="rounds > 3">
+
+        <div *ngIf="questionState==4">
+            <app-game-session [points]="points" (pointEvent)="receivePoints($event)" [questionState]="questionState" (levelNumEvent)="recLevelNumber($event)" [gameMode]="gameMode" [genre]="genre" [isInverted]="isInverted" [rounds]="rounds"></app-game-session>
+        </div>
+        
+        <div *ngIf="questionState==5">
+            <app-game-session [points]="points" (pointEvent)="receivePoints($event)" [questionState]="questionState" (levelNumEvent)="recLevelNumber($event)" [gameMode]="gameMode" [genre]="genre" [isInverted]="isInverted" [rounds]="rounds"></app-game-session>
+        </div>
+        
+        <div   *ngIf="rounds > 5" >
+
+            <div *ngIf="questionState==6">
+                <app-game-session [points]="points" (pointEvent)="receivePoints($event)" [questionState]="questionState" (levelNumEvent)="recLevelNumber($event)" [gameMode]="gameMode" [genre]="genre" [isInverted]="isInverted" [rounds]="rounds"></app-game-session>
+            </div>
+            
+            <div *ngIf="questionState==7">
+                <app-game-session [points]="points" (pointEvent)="receivePoints($event)" [questionState]="questionState" (levelNumEvent)="recLevelNumber($event)" [gameMode]="gameMode" [genre]="genre" [isInverted]="isInverted" [rounds]="rounds"></app-game-session>
+            </div>
+
+            <div *ngIf="questionState==8">
+                <app-game-session [points]="points" (pointEvent)="receivePoints($event)" [questionState]="questionState" (levelNumEvent)="recLevelNumber($event)" [gameMode]="gameMode" [genre]="genre" [isInverted]="isInverted" [rounds]="rounds"></app-game-session>
+            </div>
+            
+            <div *ngIf="questionState==9">
+                <app-game-session [points]="points" (pointEvent)="receivePoints($event)" [questionState]="questionState" (levelNumEvent)="recLevelNumber($event)" [gameMode]="gameMode" [genre]="genre" [isInverted]="isInverted" [rounds]="rounds"></app-game-session>
+            </div>
+
+            <div *ngIf="questionState==10">
+                <app-game-session [points]="points" (pointEvent)="receivePoints($event)" [questionState]="questionState" (levelNumEvent)="recLevelNumber($event)" [gameMode]="gameMode" [genre]="genre" [isInverted]="isInverted" [rounds]="rounds"></app-game-session>
+            </div>
+        </div>
+
     </div>
 
 </div>
