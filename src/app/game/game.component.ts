@@ -23,6 +23,7 @@ export class GameComponent implements OnInit {
   isInverted: boolean=true;
 
   backroundColor: string="#2D2D2A";
+  rounds: number = 3;
 
 
   constructor(private route: ActivatedRoute, private settingsService: SettingsService) { }
@@ -46,6 +47,7 @@ export class GameComponent implements OnInit {
     this.genre=currentSettings.genre;
     this.gameMode=currentSettings.gameMode;
     this.isInverted=currentSettings.isInverted;
+    this.rounds=currentSettings.rounds;
 
     if(this.isInverted==false)
     {
