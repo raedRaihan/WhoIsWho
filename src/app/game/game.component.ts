@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser'
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-game',
@@ -13,18 +14,22 @@ export class GameComponent implements OnInit {
   questionState: number =1;
 
 
-  message = "hello world";
 
-  constructor() { }
+  /* Query Parameters */
+  genre: string = "pop";
+  gameMode: string = "NTA"; // either NTA or NTS
+  isInverted: boolean=true;
+
+  backroundColor: string="#2D2D2A";
+
+
+  constructor(private route: ActivatedRoute) { }
 
   receivePoints($event: number)
   {
     this.points=$event;
   }
-  receiveMessage($event: string)
-  {
-    this.message=$event;
-  }
+  
   
   recLevelNumber($event: number)
   {
@@ -34,7 +39,18 @@ export class GameComponent implements OnInit {
   
   ngOnInit(): void
   {
-   
+    this.route.queryParams.subscribe( (queryParam) =>
+    {
+
+      this.genre=queryParam['genre'];
+      this.gameMode=queryParam['gameMode'];
+      this.isInverted=JSON.parse(queryParam['isInverted']);
+    });
+
+    if(this.isInverted==false)
+    {
+      this.backroundColor="#1DB954";
+    }
 
     
   }

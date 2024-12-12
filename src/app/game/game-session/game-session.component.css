@@ -39,3 +39,37 @@
 {
     height: 35%;
 }
+
+.bottomItems
+{
+    display:flex;
+    flex-direction: column;
+    place-items: center;
+
+}
+
+.skip
+{
+    margin-top: 50px;
+    margin-bottom: 300px;
+    display:flex;
+    place-items: center;
+    flex-direction: column;
+}
+
+.choices
+{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 150px;
+}
+
+button
+{
+    height:70px;
+    width:150px;
+    margin-top: 20px;
+    margin-bottom: 1px;
+    font-family:'JetBrains Mono';
+}

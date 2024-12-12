@@ -2,7 +2,7 @@
 {
     display: flex;
     gap: 25px;
-
+    
 }
 
 .logo
@@ -15,4 +15,8 @@
     position: absolute;
     right: 0;
     margin-right: 75px;
+}
+.background
+{
+    font-family:'JetBrains Mono';
 }
