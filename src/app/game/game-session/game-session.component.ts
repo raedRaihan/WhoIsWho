@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class GameSessionComponent implements OnInit  {
 
-  token: string = 'BQB9gJFPhEl-8eZF2FP32-N7G_lswAr0kal_X9_GtJjHgTVHvIMRUmgIks9ndYmsR4Vq0_w47h7kyuO3IwfzUp03U5-fAJoJ9hNWhdc8tEmKhJiBvds';
+  token: string = 'BQA5nF8eL8bIE_tB0xeuWjYSzew2cgLPHqq-lNZjZRIzPCb089WgUL05hdOv01GbdMp5SGiwk0vtVEBqiwZTX1uQHH2Cvsc1slj2w7sahWJhDV1fvM0';
 
   // song arrays
   popIds: string[]=["7Fo8TAyGJr4VmhE68QamMf","4lxfqrEsLX6N1N4OCSkILp","77tT1kLj6mCWtFNqiOmP9H","0PFtn5NtBbbUNbU9EAmIWF","3fMbdgg4jU18AjLCKBhRSm"];
