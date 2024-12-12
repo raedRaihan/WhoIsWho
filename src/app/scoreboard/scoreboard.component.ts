@@ -8,6 +8,7 @@ import { ScoreboardService } from '../services/scoreboard.service';  // Import t
   styleUrls: ['./scoreboard.component.css']
 })
 export class ScoreboardComponent implements OnInit {
+  nameModule = false;
   name: string = '';
   score: number = 0;
   scoreboard: { name: string; score: number }[] = [];
@@ -20,18 +21,25 @@ export class ScoreboardComponent implements OnInit {
   ngOnInit(): void {
     this.scoreboard = this.scoreboardService.getScores();
     this.route.queryParams.subscribe((params) => {
-      const queryName = params['name'];
-      const queryScore = params['score'];
-      if (queryName && queryScore && !isNaN(+queryScore)) {
-        this.addScore(queryName, +queryScore);
+      const queryScore = params['points'];
+      if (queryScore && !isNaN(+queryScore)) {
+        this.nameModule = true;
+        this.score = queryScore
       }
     });
   }
 
-  addScore(name: string, score: number): void {
-    if (name && score !== null) {
-      this.scoreboardService.addScore(name, score);
-      this.scoreboard = this.scoreboardService.getScores();  
-    }
+
+  addScore(name: string): void {
+    this.route.queryParams.subscribe((params) => {
+      const queryScore = params['points'];
+      if (name !== null) {
+        this.scoreboardService.addScore(name, queryScore);
+        this.scoreboard = this.scoreboardService.getScores();  
+      }
+    });
+    
+    this.nameModule = false
+
   }
 }
