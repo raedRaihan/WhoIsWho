@@ -1,1 +1,24 @@
-<p>game works!</p>
+
+<head>
+    <link href='https://fonts.googleapis.com/css?family=JetBrains Mono' rel='stylesheet'>
+</head>
+<div class="background" [ngStyle]="{'background-color': backroundColor}">
+    <div class="topHeader">
+        <h1 class="logo">Who's Who?</h1>
+        <h1 class="points">Points: {{points}}</h1>
+    </div>
+    <h1 style="margin-left: 25px;">Question {{questionState}}</h1>
+    
+    <div *ngIf="questionState==1">
+        <app-game-session [points]="points" (pointEvent)="receivePoints($event)" [questionState]="questionState" (levelNumEvent)="recLevelNumber($event)" [gameMode]="gameMode" [genre]="genre" [isInverted]="isInverted"></app-game-session>
+    </div>
+    
+    <div *ngIf="questionState==2">
+        <app-game-session [points]="points" (pointEvent)="receivePoints($event)" [questionState]="questionState" (levelNumEvent)="recLevelNumber($event)" [gameMode]="gameMode" [genre]="genre" [isInverted]="isInverted"></app-game-session>
+    </div>
+    
+    <div *ngIf="questionState==3">
+        <app-game-session [points]="points" (pointEvent)="receivePoints($event)" [questionState]="questionState" (levelNumEvent)="recLevelNumber($event)" [gameMode]="gameMode" [genre]="genre" [isInverted]="isInverted"></app-game-session>
+    </div>
+
+</div>
