@@ -85,11 +85,11 @@ export class SpotifyService {
         throw error;
       });
   }
-  getRandomSongsFromPlaylist(searchQuery: string, token: string): Promise<any[]> {
-    const searchEndpoint = `https://api.spotify.com/v1/search?q=${encodeURIComponent(
-      searchQuery
-    )}&type=playlist&limit=1`;
-  console.log(searchQuery, searchEndpoint)
+  getRandomSongsFromPlaylist(searchQuery: string, token: string): Promise<string> {
+    const searchEndpoint = `https://api.spotify.com/v1/search?q=${encodeURIComponent(searchQuery)}&type=playlist&limit=1`;
+
+    console.log(searchQuery, searchEndpoint);
+
     return fetch(searchEndpoint, {
       method: 'GET',
       headers: {
@@ -97,18 +97,60 @@ export class SpotifyService {
         'Content-Type': 'application/json',
       },
     })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`Error: ${response.status} ${response.statusText}`);
-      }
-      console.log(response)
-      return response.json();
-    })
-    .catch((error) => {
-      console.error('Error searching for song:', error);
-      throw error;
-    });
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status} ${response.statusText}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+
+        const playlist = data.playlists.items[0]; 
+        if (!playlist) {
+          throw new Error('No playlist found');
+        }
+
+        const playlistId = playlist.id;
+        return `https://api.spotify.com/v1/playlists/${playlistId}/tracks`;
+      })
+      .catch((error) => {
+        console.error('Error searching for song or playlist:', error);
+        throw error;
+      });
   }
+
+  getPlaylistSongs(searchQuery: string, token: string): Promise<any[]> {
+    return this.getRandomSongsFromPlaylist(searchQuery, token)
+      .then((playlistTracksEndpoint) => {
+        return fetch(playlistTracksEndpoint, {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`Error: ${response.status} ${response.statusText}`);
+            }
+            return response.json();
+          })
+          .then((trackData) => {
+            return trackData.items.map((trackItem: any) => trackItem.track);
+          })
+          .catch((error) => {
+            console.error('Error fetching tracks from playlist:', error);
+            throw error;
+          });
+      })
+      .catch((error) => {
+        console.error('Error fetching playlist tracks URL:', error);
+        throw error;
+      });
+  }
+  
+
   
 }
 

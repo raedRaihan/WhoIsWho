@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
       });
   
 
-      const playlistQuery = 'pop';
+      const playlistQuery = 'pop playlist';
       this.spotifyService.getRandomSongsFromPlaylist(playlistQuery, token).then((songs) => {
         console.log('Random Songs from Playlist:', songs);
       }).catch((error) => {
