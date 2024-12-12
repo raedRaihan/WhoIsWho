@@ -3,6 +3,7 @@ import axios from 'axios';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import * as _ from 'lodash';
 import { Router } from '@angular/router';
+import { SpotifyService } from 'src/app/services/spotify.service';
 
 @Component({
   selector: 'app-game-session',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class GameSessionComponent implements OnInit  {
 
-  token: string = 'BQB9gJFPhEl-8eZF2FP32-N7G_lswAr0kal_X9_GtJjHgTVHvIMRUmgIks9ndYmsR4Vq0_w47h7kyuO3IwfzUp03U5-fAJoJ9hNWhdc8tEmKhJiBvds';
+  token: string = '';
 
   // song arrays
   popIds: string[]=["7Fo8TAyGJr4VmhE68QamMf","4lxfqrEsLX6N1N4OCSkILp","77tT1kLj6mCWtFNqiOmP9H","0PFtn5NtBbbUNbU9EAmIWF","3fMbdgg4jU18AjLCKBhRSm"];
@@ -54,7 +55,45 @@ export class GameSessionComponent implements OnInit  {
     this.levelNumEvent.emit(this.questionState);
   }
 
-  constructor(private sanitizer: DomSanitizer, private router: Router) { }
+  constructor(private sanitizer: DomSanitizer, private router: Router, private spotifyService: SpotifyService) { }
+
+  ngOnInit(): void
+  {
+  
+
+   this.spotifyService.getToken().then((token) =>
+     {
+      this.token = token;
+
+      if (this.genre == "pop")
+      {
+        this.songIds = [...this.popIds];
+      } 
+      else if (this.genre == "rock")
+      {
+        this.songIds = [...this.rockIds];
+      } 
+      else if (this.genre == "eurobeat")
+      {
+        this.songIds = [...this.eurobeatIds];
+      }
+      else
+      {
+        const tempArray = [...this.popIds, ...this.rockIds, ...this.eurobeatIds];
+        this.songIds = [...tempArray];
+        console.log("song ids " + this.songIds);
+      }
+
+      this.seconds = 0;
+      this.readyToPlay = false;
+      this.getRandomSongFromArtist(true, -1);
+      
+    }).catch(error => {
+      console.error('Error fetching token:', error);
+  });
+
+  }
+
 
   
   notIncremented= true;
@@ -70,7 +109,7 @@ export class GameSessionComponent implements OnInit  {
       this.sendLevelNumber();
       if(this.questionState > 3)
       {
-        this.router.navigate(['/scoreboard'], { queryParams: { points: this.points, isInverted: this.isInverted}}); 
+        this.router.navigate(['/scoreboard'], { queryParams: { points: this.points}}); 
       }
       
     }
@@ -95,34 +134,7 @@ export class GameSessionComponent implements OnInit  {
   }
 
   
-  ngOnInit(): void
-  {
-
-    if(this.genre=="pop")
-    {
-      this.songIds= [...this.popIds];
-    }
-    else if(this.genre=="rock")
-    {
-      this.songIds= [...this.rockIds];
-    }
-    else if(this.genre=="eurobeat")
-    {
-      this.songIds= [...this.eurobeatIds];
-    }
-    else // for all
-    {
-      const tempArray=[...this.popIds, ...this.rockIds,...this.eurobeatIds];
   
-      this.songIds= [...tempArray];
-      console.log("song ids "+this.songIds);
-    }
-
-    this.seconds=0;
-    this.readyToPlay=false;
-    this.getRandomSongFromArtist(true, -1);
-  }
-
   
   incrementSeconds()
   {
