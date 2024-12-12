@@ -49,6 +49,7 @@ export class SettingsComponent implements OnInit {
       genre: this.genre,
       isInverted: this.isInverted,
       gameMode: this.gameMode,
+      rounds : this.rounds
       // hasYearPreference: this.hasYearPreference,
       // minYear: this.hasYearPreference ? this.minYear : null,
       // maxYear: this.hasYearPreference ? this.maxYear : null,

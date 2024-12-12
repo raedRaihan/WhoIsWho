@@ -19,16 +19,23 @@ export class HomeComponent implements OnInit {
     this.spotifyService.getToken().then((token) => {
       this.authLoading = false;
   
-
-      const songQuery = 'fireflies'; 
+      const songQuery = 'fireflies';
       this.spotifyService.searchSong(songQuery, token).then((result) => {
         console.log('Search Results:', result.tracks.items);
-
       }).catch((error) => {
         console.error('Error searching for song:', error);
       });
+  
+
+      const playlistQuery = 'pop';
+      this.spotifyService.getRandomSongsFromPlaylist(playlistQuery, token).then((songs) => {
+        console.log('Random Songs from Playlist:', songs);
+      }).catch((error) => {
+        console.error('Error fetching songs from playlist:', error);
+      });
     });
   }
+  
   
 
   setGenre(selectedGenre: string): void {

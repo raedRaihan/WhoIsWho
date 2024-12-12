@@ -85,8 +85,30 @@ export class SpotifyService {
         throw error;
       });
   }
-  
-    
+  getRandomSongsFromPlaylist(searchQuery: string, token: string): Promise<any[]> {
+    const searchEndpoint = `https://api.spotify.com/v1/search?q=${encodeURIComponent(
+      searchQuery
+    )}&type=playlist&limit=1`;
+  console.log(searchQuery, searchEndpoint)
+    return fetch(searchEndpoint, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
+      }
+      console.log(response)
+      return response.json();
+    })
+    .catch((error) => {
+      console.error('Error searching for song:', error);
+      throw error;
+    });
+  }
   
 }
 
