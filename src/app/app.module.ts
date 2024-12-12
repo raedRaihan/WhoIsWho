@@ -9,6 +9,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { GameComponent } from './game/game.component';
 import { ScoreboardComponent } from './scoreboard/scoreboard.component';
 import { GameSessionComponent } from './game/game-session/game-session.component';
+import { SettingsPopupComponent } from './components/settings-popup/settings-popup.component';
 
 const routes: Routes = [{ path: "", component: HomeComponent },
   {path: "settings", component:SettingsComponent},
@@ -17,7 +18,7 @@ const routes: Routes = [{ path: "", component: HomeComponent },
 ];
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, SettingsComponent, GameComponent, ScoreboardComponent, GameSessionComponent],
+  declarations: [AppComponent, HomeComponent, SettingsComponent, GameComponent, ScoreboardComponent, GameSessionComponent, SettingsPopupComponent],
   imports: [BrowserModule, FormsModule, RouterModule.forRoot(routes)],
   providers: [],
   bootstrap: [AppComponent],

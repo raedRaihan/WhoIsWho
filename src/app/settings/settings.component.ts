@@ -15,8 +15,9 @@ export class SettingsComponent implements OnInit {
   // minYear?: Date;
   // maxYear?: Date;
   genres: string[] = [];
-  rounds : number = 0;
-  constructor(private router: Router, private settingsService: SettingsService) {}
+  rounds: number = 0;
+  showPopup: boolean = false;
+  constructor(private router: Router, private settingsService: SettingsService) { }
 
   ngOnInit(): void {
     const currentSettings = this.settingsService.getSettings();
@@ -49,18 +50,26 @@ export class SettingsComponent implements OnInit {
       genre: this.genre,
       isInverted: this.isInverted,
       gameMode: this.gameMode,
-      rounds : this.rounds
+      rounds: this.rounds,
       // hasYearPreference: this.hasYearPreference,
       // minYear: this.hasYearPreference ? this.minYear : null,
       // maxYear: this.hasYearPreference ? this.maxYear : null,
     };
 
-    this.settingsService.updateSettings(updatedSettings);
+    this.showPopup = true;  // Show the popup
+    this.settingsService.updateSettings(updatedSettings);  // Save the settings
     console.log('Settings saved:', updatedSettings);
+
+    setTimeout(() => {
+      this.showPopup = false;
+    }, 3000);
   }
 
   resetSettings(): void {
     this.settingsService.resetSettings();
-    this.ngOnInit(); 
+    this.ngOnInit();
+  }
+  closePopup(): void {
+    this.showPopup = false;
   }
 }
