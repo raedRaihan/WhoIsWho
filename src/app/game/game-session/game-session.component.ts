@@ -16,8 +16,16 @@ export class GameSessionComponent implements OnInit  {
 
   // song arrays
   popIds: string[]=["7Fo8TAyGJr4VmhE68QamMf","4lxfqrEsLX6N1N4OCSkILp","77tT1kLj6mCWtFNqiOmP9H","0PFtn5NtBbbUNbU9EAmIWF","3fMbdgg4jU18AjLCKBhRSm"];
-  rockIds: string[]=["0k17h0D3J5VfsdmQ1iZtE9","6IRouO5mvvfcyxtPDKMYFN","22WZ7M8sxp5THdruNY3gXt","2UazAtjfzqBF0Nho2awK4z","7Bah8E0kCETqEpAHI6CPzQ"];
+  rockIds: string[]=["0k17h0D3J5VfsdmQ1iZtE9","6IRouO5mvvfcyxtPDKMYFN","22WZ7M8sxp5THdruNY3gXt","2UazAtjfzqBF0Nho2awK4z","7Bah8E0kCETqEpAHI6CPzQ","2Ex4vjQ6mSh5woTlDWto6d"];
+  rapIds: string[]=["7B4hKK0S9QYnaoqa9OuwgX","6DPYiyq5kWVQS4RGwxzPC7","3Mcii5XWf6E0lrY3Uky4cA","5NMN8ahOjFuRoyYVjKGFGq","6OxjXk1y4QXXRUJyldFIIG"]
   eurobeatIds: string[]=["1uXrhF4cZsmDQZDueF9uJT","6MucfkxCV71PqB4YcA23e3","25JX78Duv0fYqFeZ70jvwK","3PIG5hkfeomy1hf4Xo33Wl","1Q8vDbSorFlD9bhicfYcLR"];
+  countryIds: string[]=["7290H8m1Dwt8G7jm1y9CQx","3kvy8do7n0qVqvlNFS4yOF","1FClsNYBUoNFtGgzeG74dW","4L1z1IcfK7lbqx8izGHaw5","5PSWc8Y94zFsAtZlTe7ipI"];
+  hipHopIds: string[]=["3q7HBObVc0L8jNeTe5Gofh","3nFkdlSjzX9mRTtwJOzDYB","7dGJo4pcD2V6oG8kP0tJRR","5K4W6rqBFWDnAN6FQUkS6x","0hCNtLu0JehylgoiP8L4Gh"];
+  jazzIds: string[]=["4V7Ate3UISn8cy06xnAprh","0kbYTNQb4Pb1rPbbaF0pT4","2hGh5VOeeqimQFxqXvfCUf","325pT767xzWjDOcIjXBihK","1W8TbFzNS15VwsempfY12H"];
+  alternativeIds: string[]=["4Z8W4fKeB5YxbusRsdQVPb","4F84IBURUo98rz4r61KF70","7dIxU1XgxBIa3KJAWzaFAC","0L8ExT028jH3ddEcZwqJJ5","3yY2gUcIsjMr8hjo51PoJ8"];
+  jPopIds: string[]=["01wau5CL3Z1vfJJWkzBkqg","64tJ2EAv1R6UaZqc4iOCyj","630wzNP2OL7fl4Xl0GnMWq","6jTjjAjvYvMYfaqi837p5x","7i9bNUSGORP5MIgrii3cJc"];
+  kPopIds: string[]=["3Nrfpe0tUJi4K4DXYWgMUX","3cjEqqelV9zb4BYE3qDQ4O","6nfDaffa50mKtEOwR8g4df","4Kxlr1PRlDKEB0ekOCyHgX","41MozSoPIsD1dJM0CLPjZF"];
+  emoIds: string[]=["7FBcuc1gsnv6Y1nwFtNRCb","1FIzwiROYEiAdCClC6Kvly","3Ayl7mCk0nScecqOzvNp6s","4UXqAaa6dQYAk18Lv7PEgX","54Bjxn26WsjfslQbNVtSCm"];
   songIds: string[]=[];
 
   pickedSong: SafeResourceUrl  = '';
@@ -72,14 +80,46 @@ export class GameSessionComponent implements OnInit  {
       else if (this.genre == "rock")
       {
         this.songIds = [...this.rockIds];
-      } 
+      }
+      else if (this.genre == "rap")
+      {
+        this.songIds = [...this.rapIds];
+      }  
       else if (this.genre == "eurobeat")
       {
         this.songIds = [...this.eurobeatIds];
       }
+      else if (this.genre == "country")
+      {
+        this.songIds = [...this.countryIds];
+      } 
+      else if (this.genre == "hip-hop")
+      {
+        this.songIds = [...this.hipHopIds];
+      }
+      else if (this.genre == "jazz")
+      {
+        this.songIds = [...this.jazzIds];
+      }
+      else if (this.genre == "alternative")
+      {
+        this.songIds = [...this.alternativeIds];
+      }
+      else if (this.genre == "j-pop")
+      {
+        this.songIds = [...this.jPopIds];
+      }
+      else if (this.genre == "k-pop")
+      {
+        this.songIds = [...this.kPopIds];
+      }
+      else if (this.genre == "emo")
+      {
+        this.songIds = [...this.emoIds];
+      }
       else
       {
-        const tempArray = [...this.popIds, ...this.rockIds, ...this.eurobeatIds];
+        const tempArray = [...this.popIds, ...this.rockIds, ...this.eurobeatIds, ...this.rapIds, ...this.countryIds, ...this.hipHopIds, ...this.jazzIds, ...this.alternativeIds, ...this.jPopIds, ...this.kPopIds, ...this.emoIds];
         this.songIds = [...tempArray];
         console.log("song ids " + this.songIds);
       }
@@ -87,7 +127,7 @@ export class GameSessionComponent implements OnInit  {
       this.seconds = 0;
       this.readyToPlay = false;
       this.getRandomSongFromArtist(true, -1);
-      
+
     }).catch(error => {
       console.error('Error fetching token:', error);
   });
