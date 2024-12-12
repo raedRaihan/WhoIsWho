@@ -23,5 +23,5 @@
       </ul></div>
       
     </div>
-<button class="home-button" routerLink="/" routerLinkActive="active">Home</button>
+<button *ngIf="!nameModule" class="home-button" routerLink="/" routerLinkActive="active">Home</button>
   </div>
