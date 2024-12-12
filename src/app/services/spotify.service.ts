@@ -34,21 +34,34 @@ export class SpotifyService {
       });
   }
   
-  loadGenres(token: string): Promise<string[]> {
-    console.log(token);
-  
-    return Promise.resolve([
-      "rock",
-      "rap",
-      "pop",
-      "country",
-      "hip-hop",
-      "jazz",
-      "alternative",
-      "j-pop",
-      "k-pop",
-      "emo",
-    ]);
+  // loadGenres(token: string): Promise<string[]> {
+  //   return Promise.resolve([
+  //     "rock",
+  //     "rap",
+  //     "pop",
+  //     "country",
+  //     "hip-hop",
+  //     "jazz",
+  //     "alternative",
+  //     "j-pop",
+  //     "k-pop",
+  //     "emo",
+  //   ]);
+  // }
+  loadGenres(): string[] {
+    return [
+      'rock',
+      'all',
+      'rap',
+      'pop',
+      'country',
+      'hip-hop',
+      'jazz',
+      'alternative',
+      'j-pop',
+      'k-pop',
+      'emo',
+    ];
   }
 
   searchSong(query: string, token: string): Promise<any> {

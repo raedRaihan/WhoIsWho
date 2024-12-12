@@ -1,1 +1,57 @@
-<p>settings works!</p>
+<div class="header">
+  <h1>Whose Who?</h1>
+  <button class="back-button" routerLink="/" routerLinkActive="active">Back</button>
+</div>
+
+<div class="settings-form">
+  <h2>Game Settings</h2>
+  <form (ngSubmit)="saveSettings()">
+    <label>
+      Genre:
+      <select [(ngModel)]="genre" name="genre">
+        <option *ngFor="let genre of genres" [value]="genre">{{ genre }}</option>
+      </select>
+    </label>
+    <br />
+
+    <label>
+      Inverted Mode:
+      <input type="checkbox" [(ngModel)]="isInverted" name="isInverted" />
+    </label>
+    <br />
+
+    <label>
+      Game Mode:
+      <select [(ngModel)]="gameMode" name="gameMode">
+        <option value="NTS">Name that Song</option>
+        <option value="NTA">Name that Artist</option>
+      </select>
+    </label>
+    <br />
+
+    <label>
+      Year Preference:
+      <input type="checkbox" [(ngModel)]="hasYearPreference" name="hasYearPreference" />
+    </label>
+    <br />
+
+    <div *ngIf="hasYearPreference">
+      <label>
+        Min Year:
+        <input type="date" [(ngModel)]="minYear" name="minYear" />
+      </label>
+      <br />
+
+      <label>
+        Max Year:
+        <input type="date" [(ngModel)]="maxYear" name="maxYear" />
+      </label>
+      <br />
+    </div>
+<div class="save-buttons">
+  <button type="submit">Save Settings</button>
+  <button class="reset" type="button" (click)="resetSettings()">Reset</button>
+</div>
+    
+  </form>
+</div>
