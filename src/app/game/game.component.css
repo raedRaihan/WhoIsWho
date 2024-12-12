@@ -1,0 +1,23 @@
+.topHeader
+{
+    display: flex;
+    gap: 25px;
+    margin-left: 25px;
+    
+}
+
+.logo
+{
+    display: inline-block;
+}
+
+.points
+{
+    position: absolute;
+    right: 0;
+    margin-right: 75px;
+}
+.background
+{
+    font-family:'JetBrains Mono';
+}

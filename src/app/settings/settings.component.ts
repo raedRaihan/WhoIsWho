@@ -38,6 +38,7 @@ export class SettingsComponent implements OnInit {
       'j-pop',
       'k-pop',
       'emo',
+      'eurobeat',
     ];
     console.log(this)
   }
