@@ -56,6 +56,10 @@
     place-items: center;
     flex-direction: column;
 }
+.Timer
+{
+    font-size:20px;
+}
 
 .choices
 {
@@ -68,8 +72,10 @@
 button
 {
     height:70px;
-    width:150px;
+    width:250px;
+    border: none;
     margin-top: 20px;
-    margin-bottom: 1px;
     font-family:'JetBrains Mono';
+    text-align: center;
+    border-radius: 8px;
 }

@@ -11,11 +11,13 @@ import { Router } from '@angular/router';
 })
 export class GameSessionComponent implements OnInit  {
 
-  token: string = 'BQDy2tfmlSGn6WJefU3orGSd0h1aFPQahwzDssoWj_wanbVwMYGe3e2sS-AVcGf9LCRldmW1QCWf0t-jUX0YrlceP1lBINgPbtCXCbAwXUET2Zt31kg';
+  token: string = 'BQAuLv_lXDMsN5txkHok3zPYvQK8qOpyHjNhKP1vJmDKTx6KdUjVzGm29QuT7_yreLbfoLiZVgD4dUwEwSqTqRLPWFR7_vULZfgoa2jHvhG7AfkmS50';
 
   // song arrays
-  popIds: string[]=["7Fo8TAyGJr4VmhE68QamMf","4lxfqrEsLX6N1N4OCSkILp","77tT1kLj6mCWtFNqiOmP9H","0PFtn5NtBbbUNbU9EAmIWF","3fMbdgg4jU18AjLCKBhRSm"]
-  songIds:string[]=[];
+  popIds: string[]=["7Fo8TAyGJr4VmhE68QamMf","4lxfqrEsLX6N1N4OCSkILp","77tT1kLj6mCWtFNqiOmP9H","0PFtn5NtBbbUNbU9EAmIWF","3fMbdgg4jU18AjLCKBhRSm"];
+  rockIds: string[]=["0k17h0D3J5VfsdmQ1iZtE9","6IRouO5mvvfcyxtPDKMYFN","22WZ7M8sxp5THdruNY3gXt","2UazAtjfzqBF0Nho2awK4z","7Bah8E0kCETqEpAHI6CPzQ"];
+  eurobeatIds: string[]=["1uXrhF4cZsmDQZDueF9uJT","6MucfkxCV71PqB4YcA23e3","25JX78Duv0fYqFeZ70jvwK","3PIG5hkfeomy1hf4Xo33Wl","1Q8vDbSorFlD9bhicfYcLR"];
+  songIds: string[]=[];
 
   pickedSong: SafeResourceUrl  = '';
   pickedSongObj: any=null;
@@ -68,7 +70,7 @@ export class GameSessionComponent implements OnInit  {
       this.sendLevelNumber();
       if(this.questionState > 3)
       {
-        this.router.navigate(['/scoreboard']); 
+        this.router.navigate(['/scoreboard'], { queryParams: { points: this.points, isInverted: this.isInverted}}); 
       }
       
     }
@@ -95,10 +97,30 @@ export class GameSessionComponent implements OnInit  {
   
   ngOnInit(): void
   {
+
+    if(this.genre=="pop")
+    {
+      this.songIds= [...this.popIds];
+    }
+    else if(this.genre=="rock")
+    {
+      this.songIds= [...this.rockIds];
+    }
+    else if(this.genre=="eurobeat")
+    {
+      this.songIds= [...this.eurobeatIds];
+    }
+    else // for all
+    {
+      const tempArray=[...this.popIds, ...this.rockIds,...this.eurobeatIds];
+  
+      this.songIds= [...tempArray];
+      console.log("song ids "+this.songIds);
+    }
+
     this.seconds=0;
     this.readyToPlay=false;
     this.getRandomSongFromArtist(true, -1);
-    
   }
 
   
@@ -153,10 +175,10 @@ export class GameSessionComponent implements OnInit  {
 
   async getRandomSongFromArtist(isQuestionArtist:boolean, buttonNumber: number): Promise<void> 
   {
-    var selectedAristId = this.popIds[Math.floor(Math.random() * this.popIds.length)];
+    var selectedAristId = this.songIds[Math.floor(Math.random() * this.songIds.length)];
     while(this.duplicateArtists.includes(selectedAristId))
     {
-      selectedAristId = this.popIds[Math.floor(Math.random() * this.popIds.length)];
+      selectedAristId = this.songIds[Math.floor(Math.random() * this.songIds.length)];
     }
     this.duplicateArtists.push(selectedAristId);
     
@@ -207,14 +229,9 @@ export class GameSessionComponent implements OnInit  {
           this.readyToPlay = true;
           setInterval(this.incrementSeconds.bind(this), 1000);
           this.setButtons();
-        }
-       
-        
+        }      
       } 
-      else
-      {
-        console.error('No tracks found for this artist.');
-      }
+      
     } 
     catch (error: any)
     {
