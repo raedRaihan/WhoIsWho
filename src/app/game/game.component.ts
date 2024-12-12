@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser'
 import {ActivatedRoute, Router} from '@angular/router';
+import { SettingsService } from '../services/settings.service';
+
 
 @Component({
   selector: 'app-game',
@@ -23,7 +25,7 @@ export class GameComponent implements OnInit {
   backroundColor: string="#2D2D2A";
 
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private settingsService: SettingsService) { }
 
   receivePoints($event: number)
   {
@@ -39,13 +41,18 @@ export class GameComponent implements OnInit {
   
   ngOnInit(): void
   {
-    this.route.queryParams.subscribe( (queryParam) =>
+    const currentSettings = this.settingsService.getSettings();
+
+    this.genre=currentSettings.genre;
+    this.gameMode=currentSettings.gameMode;
+    this.isInverted=currentSettings.isInverted;
+    /*this.route.queryParams.subscribe( (queryParam) =>
     {
 
       this.genre=queryParam['genre'];
       this.gameMode=queryParam['gameMode'];
       this.isInverted=JSON.parse(queryParam['isInverted']);
-    });
+    });*/
 
     if(this.isInverted==false)
     {
