@@ -3,17 +3,18 @@
     <div class="scoreboard">
       <h2>Scoreboard</h2>
     
-      <!-- <form (ngSubmit)="addScore(name, score)">
+      <form *ngIf="nameModule" (ngSubmit)="addScore(name)" class="stacked-form">
         <label>
-          Name:
+          Enter Your Name:
           <input type="text" [(ngModel)]="name" name="name" />
         </label>
         <label>
-          Score:
-          <input type="number" [(ngModel)]="score" name="score" />
+          Your Score:
+          <label>{{ score }}</label>
         </label>
         <button type="submit">Add Score</button>
-      </form> -->
+      </form>
+      
     
       <div class="scoreboard-container"><ul>
         <li *ngFor="let entry of scoreboard">
@@ -22,5 +23,5 @@
       </ul></div>
       
     </div>
-<button class="home-button" routerLink="/" routerLinkActive="active">Home</button>
+<button *ngIf="!nameModule" class="home-button" routerLink="/" routerLinkActive="active">Home</button>
   </div>

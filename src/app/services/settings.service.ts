@@ -10,9 +10,10 @@ export class SettingsService {
     genre: 'all',
     isInverted: false,
     gameMode: 'NTS',
-    hasYearPreference: false,
-    minYear: null,
-    maxYear: null,
+    rounds : 3,
+    // hasYearPreference: false,
+    // minYear: null,
+    // maxYear: null,
   };
 
   constructor() {

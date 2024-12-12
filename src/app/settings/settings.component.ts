@@ -11,11 +11,11 @@ export class SettingsComponent implements OnInit {
   genre: string = '';
   isInverted: boolean = false;
   gameMode: string = '';
-  hasYearPreference: boolean = false;
-  minYear?: Date;
-  maxYear?: Date;
+  // hasYearPreference: boolean = false;
+  // minYear?: Date;
+  // maxYear?: Date;
   genres: string[] = [];
-
+  rounds : number = 0;
   constructor(private router: Router, private settingsService: SettingsService) {}
 
   ngOnInit(): void {
@@ -23,9 +23,10 @@ export class SettingsComponent implements OnInit {
     this.genre = currentSettings.genre;
     this.isInverted = currentSettings.isInverted;
     this.gameMode = currentSettings.gameMode;
-    this.hasYearPreference = currentSettings.hasYearPreference;
-    this.minYear = currentSettings.minYear;
-    this.maxYear = currentSettings.maxYear;
+    this.rounds = currentSettings.rounds;
+    // this.hasYearPreference = currentSettings.hasYearPreference;
+    // this.minYear = currentSettings.minYear;
+    // this.maxYear = currentSettings.maxYear;
     this.genres = [
       'rock',
       'all',
@@ -48,9 +49,9 @@ export class SettingsComponent implements OnInit {
       genre: this.genre,
       isInverted: this.isInverted,
       gameMode: this.gameMode,
-      hasYearPreference: this.hasYearPreference,
-      minYear: this.hasYearPreference ? this.minYear : null,
-      maxYear: this.hasYearPreference ? this.maxYear : null,
+      // hasYearPreference: this.hasYearPreference,
+      // minYear: this.hasYearPreference ? this.minYear : null,
+      // maxYear: this.hasYearPreference ? this.maxYear : null,
     };
 
     this.settingsService.updateSettings(updatedSettings);

@@ -52,3 +52,16 @@ button {
 button:hover {
   background-color: #0056b3;
 }
+
+.stacked-form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.stacked-form input {
+  margin-top: 5px;
+}
+
+.stacked-form button {
+  margin-top: 15px;
+}

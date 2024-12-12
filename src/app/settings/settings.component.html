@@ -30,12 +30,22 @@
     <br />
 
     <label>
-      Year Preference:
-      <input type="checkbox" [(ngModel)]="hasYearPreference" name="hasYearPreference" />
+      Number or Rounds:
+      <select [(ngModel)]="rounds" name="rounds">
+        <option value=3>3</option>
+        <option value=5>5</option>
+        <option value=10>10</option>
+      </select>
     </label>
     <br />
 
-    <div *ngIf="hasYearPreference">
+    <!-- <label>
+      Year Preference:
+      <input type="checkbox" [(ngModel)]="hasYearPreference" name="hasYearPreference" />
+    </label>
+    <br /> -->
+
+    <!-- <div *ngIf="hasYearPreference">
       <label>
         Min Year:
         <input type="date" [(ngModel)]="minYear" name="minYear" />
@@ -47,10 +57,10 @@
         <input type="date" [(ngModel)]="maxYear" name="maxYear" />
       </label>
       <br />
-    </div>
+    </div> -->
 <div class="save-buttons">
-  <button type="submit">Save Settings</button>
-  <button class="reset" type="button" (click)="resetSettings()">Reset</button>
+  <button class="save-button" type="submit">Save Settings</button>
+  <button class="reset-button" type="button" (click)="resetSettings()">Reset</button>
 </div>
     
   </form>
