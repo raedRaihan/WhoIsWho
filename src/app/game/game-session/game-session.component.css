@@ -50,15 +50,16 @@
 
 .skip
 {
-    margin-top: 50px;
-    margin-bottom: 300px;
-    display:flex;
-    place-items: center;
-    flex-direction: column;
+    position:absolute;
+    bottom:0;
+    right:0;
+    margin-bottom: 25px;
+    margin-right: 25px;
 }
 .Timer
 {
-    font-size:20px;
+    font-size:25px;
+    color: white;
 }
 
 .choices
@@ -78,4 +79,5 @@ button
     font-family:'JetBrains Mono';
     text-align: center;
     border-radius: 8px;
+    cursor: pointer;
 }

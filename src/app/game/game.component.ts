@@ -46,13 +46,6 @@ export class GameComponent implements OnInit {
     this.genre=currentSettings.genre;
     this.gameMode=currentSettings.gameMode;
     this.isInverted=currentSettings.isInverted;
-    /*this.route.queryParams.subscribe( (queryParam) =>
-    {
-
-      this.genre=queryParam['genre'];
-      this.gameMode=queryParam['gameMode'];
-      this.isInverted=JSON.parse(queryParam['isInverted']);
-    });*/
 
     if(this.isInverted==false)
     {
