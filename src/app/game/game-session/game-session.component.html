@@ -20,13 +20,13 @@
             <p>Timer: {{31-seconds}}</p>
         </div>
         <div class="choices">
-            <button (click)="checkAnswer(0)">{{buttons[0]}}</button>
-            <button (click)="checkAnswer(1)">{{buttons[1]}}</button>  
+            <button (click)="checkAnswer(0)" [ngStyle]="{'background-color': button1Color}" >{{buttons[0]}} </button>
+            <button (click)="checkAnswer(1)" [ngStyle]="{'background-color': button2Color}" >{{buttons[1]}} </button>  
         </div>
 
         <div class="choices">
-            <button (click)="checkAnswer(2)">{{buttons[2]}}</button>
-            <button (click)="checkAnswer(3)">{{buttons[3]}}</button>
+            <button (click)="checkAnswer(2)" [ngStyle]="{'background-color': button3Color}" >{{buttons[2]}} </button>
+            <button (click)="checkAnswer(3)" [ngStyle]="{'background-color': button4Color}" >{{buttons[3]}} </button>
         </div>
         
 

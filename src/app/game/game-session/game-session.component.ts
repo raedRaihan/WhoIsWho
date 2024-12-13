@@ -38,6 +38,11 @@ export class GameSessionComponent implements OnInit  {
   alreadySelectedAnswer: boolean=false;
   correctButtonNumber:number = -1;
   choiceMade: boolean=false;
+  // button colors
+  button1Color: string="white";
+  button2Color: string="white";
+  button3Color: string="white";
+  button4Color: string="white";
 
   /* Query Parameters */
   @Input() genre: string = "pop";
@@ -158,10 +163,35 @@ export class GameSessionComponent implements OnInit  {
     
   }
 
+  setButtonColor(buttonNumber:number, newColor: string)
+  {
+      if(buttonNumber==0)
+      {
+        
+        this.button1Color=newColor;
+        
+      }
+      else if(buttonNumber==1)
+      {
+        this.button2Color=newColor;
+      }
+      else if(buttonNumber==2) 
+      {
+        
+        this.button3Color=newColor;
+        
+      }
+      else if(buttonNumber==3)
+      {
+        this.button4Color=newColor;
+      }
+  }
+
   checkAnswer(buttonNumber:number)
   {
-    if(this.choiceMade==false && buttonNumber== this.correctButtonNumber)
+    if(this.choiceMade==false && buttonNumber== this.correctButtonNumber) // right answer
     {
+      this.setButtonColor(buttonNumber,"green");
       this.points += 31 - this.seconds;
       if (this.genre == "all")
       {
@@ -169,10 +199,12 @@ export class GameSessionComponent implements OnInit  {
       }
       this.sendPoints();
       this.choiceMade=true;
+      
       setInterval(this.transitionToNextLevel.bind(this), 2000);
     }
-    else if(this.choiceMade==false && buttonNumber!= this.correctButtonNumber)
+    else if(this.choiceMade==false && buttonNumber!= this.correctButtonNumber) // wrong answer
     {
+      this.setButtonColor(buttonNumber,"red");
       this.choiceMade=true
       setInterval(this.transitionToNextLevel.bind(this), 2000);
     }
